@@ -10,6 +10,12 @@ def obter_resposta(label: str):
     return str(input(label))
 
 
+
+def string(label: str):
+ return str(input(label))
+
+
+
 def get_integer_number(label):
   entrada = input(label)
 
