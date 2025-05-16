@@ -6,7 +6,7 @@
 import utils
 
 def main():
-    numero = utils.get_intger_number('Digite um número: ')
+    numero = utils.get_integer_number('Digite um número: ')
     verificar(numero)
 
 def verificar (numero):
