@@ -1,10 +1,4 @@
-# 4. [empréstimo.js] João precisa de um dinheiro emprestado para
-# comprar um Notebook para estudar programação. Para isso, foi ao
-# RSBank fazer uma simulação. As taxas de empréstimo do banco
-# obedecem à regra dos Juros Compostos Mensais, ou seja, o valor é
-# calculado cumulativamente mês a mês, ou seja, aplica-se os juros
-# sobre o valor total no primeiro mês e esse passa a ser a base para o
-# segundo mês.
+
 # Porém a taxa de juros aplicada é calculada de acordo com o prazo
 # de parcelamento (vide tabela) e à SELIC, atualmente em 13,75%
 # (abril/2023). O usuário só pode parcelar o empréstimo em até 24x
@@ -35,3 +29,49 @@
 # f. Comprometimento da Renda Mensal (%)
 # g. Se Empréstimo APROVADO ou NEGADO (se a
 # renda mensal suporta a parcela)
+
+import utils
+
+def main():
+    renda_mensal = utils.get_decimal_number_min('Qual sua renda mensal(R$)?: ', 0)
+    valor_emprestimo = utils.get_decimal_number_min('Qual o valor do empréstimo(R$)?: ', 1.518)
+    prazo = utils.get_int_in_range('Qual o prazo desejado para o empréstimo?: ', 2, 24)
+
+    iof = (valor_emprestimo * (0.38/100)) + ((0.0082/100) * (30 * prazo) * valor_emprestimo)
+
+
+    juros = (valor_emprestimo + iof) * ((1 + selic(prazo))**prazo) - valor_emprestimo
+    valor_total_pagar = valor_emprestimo + juros 
+    parcela = valor_total_pagar/prazo
+    comprometimento_da_renda = (100 * parcela) / renda_mensal
+
+    interface = f'''=== CALCULADORA DE EMPRÉSTIMOS ===
+> VALOR PEDIDO: R${valor_emprestimo:.2f}
+> VALOR DO IOF: R${iof:.2f}
+> VALOR DOS JUROS A PAGAR: R${juros:.2f}
+> VALOR TOTAL A PAGAR: R${valor_total_pagar:.2f}
+> VALOR DA PARCELA MENSAL: {prazo}x de {parcela:.2f}
+> COMPROMETIMENTO DA RENDA MENSAL: {comprometimento_da_renda:.2f}%
+> STATUS DO EMPRÉSTIMO: {avaliar_emprestimo(renda_mensal, parcela)}'''
+    print(interface)
+
+
+def avaliar_emprestimo(renda_mensal: float, parcela: float):
+    if renda_mensal * 0.40 < parcela:
+        return 'EMPRÉSTIMO NEGADO: A sua renda mensal não suporta a parcela'
+    else:
+        return 'EMPRÉSTIMO APROVADO'
+    
+
+def selic(prazo: int):
+    if prazo <= 6:
+       return (13.75/100) * 0.5
+    elif prazo <= 12:
+       return (13.75/100) * 0.75
+    elif prazo <= 18:
+        return (13.75/100)
+    else:
+        return (13.75/100) * 1.30
+    
+main()
+
