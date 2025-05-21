@@ -9,6 +9,10 @@ def get_integer_number(label: str):
         return get_integer_number(label)
     
 
+def get_text(label: str):
+  return str(input(label))
+
+
 def get_integer_number_min(label: str, min_value: int):
     numero = get_integer_number(label)
 
