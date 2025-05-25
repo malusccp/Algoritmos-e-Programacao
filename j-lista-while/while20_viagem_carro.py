@@ -10,12 +10,32 @@
 import utils
 
 def main():
-    distancia_percorrida = utils.get_decimal_number_min('Distância percorrida desde a última medição(km): ', 600)
-    litros_usados = utils.get_decimal_number_min('Quantidade de litros consumidos para percorrer a distância indicada(L): ')
+        distancia_percorrida = utils.get_decimal_number_min('Distância percorrida desde a última medição(km): ', 0)
+        litros_usados = utils.get_decimal_number_min('Quantidade de litros consumidos para percorrer a distância indicada(L): ', 0)
 
-    consumo = distancia_percorrida/litros_usados
-    while not distancia_percorrida >= 600 or litros_usados == 50:
+        total_km = distancia_percorrida
+        consumo = distancia_percorrida/litros_usados
+        litros_restantes = 50 - litros_usados
 
+        while True:
+            distancia_percorrida = utils.get_decimal_number_min('Distância percorrida desde a última medição(km): ', 0)
+            
+            total_km += distancia_percorrida
+            if total_km >= 600 :
+                 break
 
+            litros_restantes -= (distancia_percorrida/consumo)
+            if litros_restantes == 0:
+                 break
+            
 
+            if total_km >= 600:
+                print('O carro chegou ao seu destino')
+                break
+            elif litros_restantes == 0:
+                print('O carro parou antes de chegar por falta de combustível (consumo igual a 50 litros)')
+                break
 
+        print(f'Consumo (km/L): {consumo} km/L ')
+
+main()
