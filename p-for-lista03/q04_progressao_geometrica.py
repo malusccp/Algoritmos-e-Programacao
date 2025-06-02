@@ -3,11 +3,12 @@ def main():
     limite = int(input('Limite: '))
     R = int(input('R: '))
 
-    termo = a0
-    for i in range(a0, limite, 1):
-        termo *= R
-        if termo <= limite:
-            print(termo)
+    print(a0)
+    for i in range(99999999999999999):
+        a0 *= R
+        if a0 <= limite:
+            print(a0)
+        else: break
     
 
 
