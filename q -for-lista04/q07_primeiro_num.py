@@ -3,7 +3,8 @@
 def main():
     num = int(input('Número: '))
 
-    for i in range(999999999999):
+    lista_num = int(input('Lista de números: '))
+    for numero in range(1000):
         lista_num = int(input('Lista de números: '))
         if lista_num == num: break
 

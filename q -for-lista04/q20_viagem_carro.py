@@ -12,7 +12,7 @@ import utils
 def main():
     distancia_total = 0
     combustivel_total = 0
-    for i in range(999999999999):
+    while True:
         distancia_percorrida = utils.get_decimal_number_min('Distância percorrida: ', 0)
         litros_consumidos = utils.get_decimal_number_min('Litros consumidos: ', 0)
 

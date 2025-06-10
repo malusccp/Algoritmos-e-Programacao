@@ -18,41 +18,46 @@ def main():
     pontos_clube_a = 0
     pontos_clube_b = 0
 
-    for i in range(9999999):
-        numero_prova = utils.get_integer_number_min('Número da prova: ', 0)
-        qtd_nadadores = utils.get_integer_number_min('Número de nadadores: ', 0)
+    numero_prova = utils.get_integer_number_min('Número da prova: ', 0)
+    qtd_nadadores = utils.get_integer_number_min('Número de nadadores: ', 0)
 
-
-        if numero_prova == 0 and qtd_nadadores == 0: break
-
+    while numero_prova != 0 or qtd_nadadores != 0:
         for i in range(1, qtd_nadadores+1, 1):
-            nome_nadador = str(input('Nome do nadador: '))
+            nome_nadador = str(input(f'Nome do nadador {i}: '))
             classificacao = utils.get_int_in_range('Classificação do nadador: ', 1, 4)
             tempo = utils.get_integer_number_min('Tempo: ', 1)
             clube = str(input('Clube: '))
 
-            if classificacao == 1: 
-                if clube.upper() == 'A': pontos_clube_a += 9 
-                else: pontos_clube_b += 9
-            elif classificacao == 2: 
-                if clube.upper() == 'A': pontos_clube_a += 6
-                else: pontos_clube_b += 6
-            elif classificacao == 3: 
-                if clube.upper() == 'A': pontos_clube_a += 4
-                else: pontos_clube_b += 4
-            elif classificacao == 4: 
-                if clube.upper() == 'A': pontos_clube_a += 3
-                else: pontos_clube_b += 3
+            pontos = calcular_pontos(classificacao)
+
+            if clube.upper() == 'A': pontos_clube_a += pontos
+            else: pontos_clube_b += pontos
+
+        numero_prova = utils.get_integer_number_min('Número da prova: ', 0)
+        qtd_nadadores = utils.get_integer_number_min('Número de nadadores: ', 0)
+
+    vencedor = 'Empate'
+    if pontos_clube_a > pontos_clube_b:
+        vencedor = 'Clube A venceu'
+    elif pontos_clube_b > pontos_clube_a: 
+        vencedor = 'Clube B venceu'
+
 
     print(f''' === COMPETIÇÃO DE NATAÇÃO ===
 > CLUBE A: {pontos_clube_a} pontos
 > CLUBE B: {pontos_clube_b} pontos
 --------------------------------------------------------
-> VENCEDOR: {vencedor(pontos_clube_a, pontos_clube_b)}
+> VENCEDOR: {vencedor}
 ''')
 
-def vencedor(pontos_a: int, pontos_b: int):
-    if pontos_a > pontos_b: return 'Clube A'
-    else: return 'Clube B'
+
+def calcular_pontos(classificacao: int):
+     if classificacao == 1: return 9
+     elif classificacao == 2: return 6
+     elif classificacao == 3: return 4
+     elif classificacao == 4: return 3
+     else: return 0
+     
+
 
 main()

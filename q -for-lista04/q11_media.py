@@ -12,10 +12,9 @@ def main():
     total_alunos = 0
     aprovados = 0
     reprovados = 0
-    for i in range(999999999999999):
-        matricula = utils.get_integer_number_min('Matrícula do aluno: ', 0)
-        if matricula == 0: break
-        else:
+    while True:
+            matricula = utils.get_integer_number_min('Matrícula do aluno: ', 0)
+            if matricula == 0: break
             nota1 = utils.get_decimal_in_range('Nota 1: ', 0, 10)
             nota2 = utils.get_decimal_in_range('Nota 2: ', 0, 10)
             nota3 = utils.get_decimal_in_range('Nota 3: ', 0, 10)

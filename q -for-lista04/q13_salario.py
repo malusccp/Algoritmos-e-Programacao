@@ -14,7 +14,7 @@ def main():
     soma_novo_salario = 0
     contador = 1
     lista = ''' AUMENTOS:'''
-    for i in range(999999999999999999):
+    while True:
         salario_antigo = utils.get_decimal_number_min('Salário: ', 0)
         if salario_antigo == 0:
             break

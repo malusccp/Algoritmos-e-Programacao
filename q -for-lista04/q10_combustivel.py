@@ -27,14 +27,13 @@ def main():
     # Dados dos passageiros:
     bagagem = 0
     passageiros = 0
-    for i in range(999999999999999):
-        num_bilhete = utils.get_integer_number_min('Digite o número do bilhete (Para parar, digite 0): ', 0)
-        if num_bilhete == 0:
-            break
-
-        qtd_bagagens = utils.get_integer_number_min('Digite o número de bagagens: ', 0)
+    num_bilhete = utils.get_integer_number_min('Digite o número do bilhete (Para parar, digite 0): ', 0)
+    qtd_bagagens = utils.get_integer_number_min('Digite o número de bagagens: ', 0)
+    while not num_bilhete != 0:
         bagagem += qtd_bagagens
         passageiros += 1
+        num_bilhete = utils.get_integer_number_min('Digite o número do bilhete (Para parar, digite 0): ', 0)
+        qtd_bagagens = utils.get_integer_number_min('Digite o número de bagagens: ', 0)
 
     peso_total_combustivel = 1.5 * 10.000
     peso_passageiros = (num_bilhete * 70) + (bagagem * 10)

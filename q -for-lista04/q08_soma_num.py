@@ -5,7 +5,7 @@ def main():
     X = int(input('Número: '))
 
     numero_anterior = 0
-    for i in range(99999999999):
+    for i in range(1000):
         soma = 0
         numero = int(input('Número: '))
         soma += numero + numero_anterior

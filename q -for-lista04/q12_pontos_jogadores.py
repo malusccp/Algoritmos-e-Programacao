@@ -8,7 +8,7 @@ import utils
 def main():
     pontos_um = 0
     pontos_dois = 0
-    for i in range(99999999999999999999):
+    while True:
         jogador_um = utils.get_integer_number_min('Pontos Jogador 1: ', 0)
         jogador_dois = utils.get_integer_number_min('Pontos Jogador 2: ', 0)
 

@@ -12,7 +12,7 @@ def main():
 
 def converter_binario(numero: int): 
     binario = ''
-    for i in range(9999999999999999999999):
+    while True:
         resto = numero % 2 
         binario = str(resto) + binario
         numero //= 2
@@ -21,7 +21,7 @@ def converter_binario(numero: int):
 
 def converter_hexadecimal(numero: int):
     hexadecimal = ''
-    for i in range(9999999999999999999999):
+    while True:
         resto = numero % 16 
         hexadecimal = str(resto) + hexadecimal
         numero //= 16

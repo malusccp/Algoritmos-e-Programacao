@@ -17,7 +17,7 @@ def main():
     nulo = 0
     indeciso = 0
     total_eleitores = 0
-    for i in range(999999999999999999):
+    while True:
         voto = pedir_voto('Voto: ')
         if voto == -1:
             break
