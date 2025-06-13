@@ -14,17 +14,16 @@ def main():
     taxa_juros = utils.get_integer_number_min('Taxa de juros: ', 0)/100
     qtd_parcelas = utils.get_integer_number_min('Número de parcelas: ', 0)
 
-    saldo_devedor = (valor_imovel - valor_entrada) * (1+taxa_juros)**qtd_parcelas
-    valor_parcela = saldo_devedor / qtd_parcelas
+    saldo_devedor = valor_imovel - valor_entrada 
+    juros_parcela = taxa_juros * saldo_devedor
     for parcela in range(1, qtd_parcelas+1):
+        amortizacao = saldo_devedor / (qtd_parcelas - parcela+1)
         print(f'Parcela {parcela}')
-        print(f'Valor da parcela: R${valor_parcela:.2f}')
-        saldo_devedor -= valor_parcela
+        print(f'Valor da parcela: R${(juros_parcela + amortizacao):.2f}')
+        saldo_devedor -= amortizacao
         print(f'Juros da parcela: R${saldo_devedor * taxa_juros:.2f}')
         print(f'Saldo devedor após o pagamento: R${saldo_devedor:.2f}')
 
-
-    print(f'Saldo devedor: R${saldo_devedor:.2f}')
 
 
 main()
