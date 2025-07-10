@@ -53,9 +53,11 @@ def remover_por_indice(lista, indice):
     return lista
 
 def resetar_lista(lista):
-    while len(lista) > 0:
-        lista.pop()
-    print('Deletado com sucesso!')
+    valor = utils.get_integer_number('Por qual valor deseja substituir?:')
+    for i in range(len(lista)):
+        lista[i] = valor
+    return lista
+    
 
 def tamanho_lista(lista):
     print(f'O tamanho da lista é {len(lista)}')

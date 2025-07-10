@@ -1,40 +1,31 @@
 import utils
 import vetor_funcionalidades
 import vetor_utils
+from teste import exibir_menu 
+from rich.prompt import Prompt
+from time import sleep
 
 def main():
     lista = []
     while True:
-
-        menu = ''' >>> PLAY NUMBERS <<< 
-    1 - Inicializar Vetor Numérico
-    2 - Mostrar todos os valores
-    3 - Resetar Vetor
-    4 - Ver quantidade de itens no vetor
-    5 - Ver Menor e Maior valores e suas posições
-    6 - Somatório dos Valores
-    7 - Média dos Valores
-    8 - Mostrar Valores Positivos e Quantidade
-    9 - Mostrar Valores Negativos e Suas Quantidades
-    10 - Atualizar todos os valores 
-    11 - Adicionar Novos Valores
-    12 - Remover Itens por Valor exato
-    13 - Remover por Posição
-    14 - Editar valor específico por Posição
-    15 - Salvar valores em arquivo 
-    0 - Sair
-    '''
-        opcao = utils.get_int_in_range(menu, 0, 15)
+        exibir_menu(lista) 
+        
+        try:
+            opcao = int(Prompt.ask("[bold green]Digite uma opção[/bold green]", default="0"))
+        except ValueError:
+            print("[red]❌ Opção inválida. Tente um número entre 0 e 15.[/red]")
+            sleep(1.5)
+            continue
 
         if opcao == 1:
             utils.clear_screen()
             lista = vetor_funcionalidades.inicializar_vetor()
         elif opcao == 2:
-            utils.clear_screen
+            utils.clear_screen()
             vetor_utils.mostrar_vetor(lista)
         elif opcao == 3:
             utils.clear_screen()
-            vetor_utils.resetar_lista(lista)
+            lista = vetor_utils.resetar_lista(lista)
         elif opcao == 4:
             utils.clear_screen()
             vetor_utils.tamanho_lista(lista)
@@ -76,11 +67,13 @@ def main():
             vetor_funcionalidades.modificar_vetor(lista, indice, novo_valor)
         elif opcao == 15:
             utils.clear_screen()
-            vetor_funcionalidades.salvar_valor_arquivo(lista)
+            nome_arquivo = input('Digite o nome do arquivo: ')
+            vetor_funcionalidades.salvar_arquivo_com_progresso(lista, nome_arquivo)
         elif opcao == 0:
             utils.clear_screen()
-            print("Salvando automaticamente os dados antes de sair...")
+            print("💾 Salvando automaticamente os dados antes de sair...")
             vetor_funcionalidades.salvar_valor_arquivo(lista)
+            print("👋 Saindo... Até logo!")
             break
-   
+
 main()

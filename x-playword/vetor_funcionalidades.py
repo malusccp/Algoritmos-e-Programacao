@@ -162,9 +162,27 @@ def modificar_vetor(lista, indice, novo_valor):
     lista[indice] = novo_valor
 
 
-def salvar_valor_arquivo(lista):
-    nome_arquivo = input('Digite o nome do arquivo: ')
-    with open(nome_arquivo, "w") as arquivo:
-        for valor in lista:
-            arquivo.write(str(valor) + "\n")
-    print('Dados salvos !')
+from rich.console import Console
+from rich.progress import track
+from time import sleep
+
+console = Console()
+
+def salvar_arquivo_com_progresso(lista, nome_arquivo):
+    if not lista:
+        console.print("[yellow]⚠️ Lista vazia. Nada foi salvo.[/yellow]")
+        return
+
+    console.print("\n[bold cyan]💾 Salvando os dados...[/bold cyan]\n")
+
+    for _ in track(range(30), description="Processando..."):
+        sleep(0.03)
+
+    try:
+        with open(nome_arquivo, "w") as arquivo:
+            for valor in lista:
+                arquivo.write(f"{valor}\n")
+
+        console.print(f"\n[green]✅ Dados salvos com sucesso em '{nome_arquivo}'[/green]\n")
+    except Exception as e:
+        console.print(f"[red]❌ Erro ao salvar o arquivo: {e}[/red]")
